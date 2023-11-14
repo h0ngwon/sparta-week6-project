@@ -7,7 +7,7 @@ const Container = styled.div`
 
 const Image = styled.img`
     width:500px;
-    height:300px;
+    height:280px;
 `
 
 const Header = () => {

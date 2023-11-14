@@ -28,12 +28,13 @@ const List = styled.ul`
 	}
 `;
 
-const Navigation = () => {
+const Navigation = ({ onGetWorkout }) => {
 	const workouts = ["스쿼트", "벤치프레스", "데드리프트", "오버헤드프레스"];
 	const [isActiveIdx, setIsActiveIdx] = useState(0);
 
 	const activeMenuHandler = (index) => {
 		setIsActiveIdx(index);
+		onGetWorkout(workouts[index]);
 	};
 
 	return (
