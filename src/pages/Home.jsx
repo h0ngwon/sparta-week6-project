@@ -29,14 +29,12 @@ const Home = () => {
 		setMenuWorkout(workout);
 	};
 
-    console.log(workout);
-
 	return (
 		<Container>
 			<Header />
 			<Navigation onGetWorkout={getMenuWorkoutHandler} />
 			<Form onAddWorkout={addWorkoutHandler}/>
-			<FanLetters />
+			<FanLetters workoutData={workout} selectedWorkout={menuWorkout}/>
 		</Container>
 	);
 };

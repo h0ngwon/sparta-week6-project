@@ -8,7 +8,7 @@ const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	width: 700px;
-	background-color: #24506e;
+	background-color: #5A6673;
 	border-radius: 30px;
 	padding: 20px;
 `;
@@ -16,7 +16,9 @@ const Container = styled.div`
 const NicknameContainer = styled.div`
 	display: flex;
 	align-items: center;
+    justify-content: space-around;
 	margin: 10px;
+    width: 100%;
 `;
 
 const NicknameLabel = styled.label`
@@ -27,15 +29,18 @@ const NicknameLabel = styled.label`
 
 const Nickname = styled.input`
 	font-size: 20px;
-	padding: 10px;
-	border-radius: 15px;
+	padding: 20px;
+	border-radius: 20px;
 	border: none;
+    width:500px;
 `;
 
 const ContentContainer = styled.div`
 	margin: 10px;
 	display: flex;
 	align-items: center;
+    justify-content: space-around;
+    width:100%;
 `;
 
 const ContentLabel = styled.label`
@@ -47,14 +52,17 @@ const ContentLabel = styled.label`
 const Content = styled.textarea`
 	font-size: 20px;
 	border-radius: 20px;
-	padding: 20px;
+	padding: 25px;
 	resize: none;
+    width:490px;
 `;
 
 const SelectContainer = styled.div`
 	margin: 10px;
 	display: flex;
 	align-items: center;
+    justify-content: space-around;
+    width:100%;
 `;
 
 const SelectLabel = styled.label`
@@ -64,8 +72,11 @@ const SelectLabel = styled.label`
 `;
 
 const Select = styled.select`
-	font-size: 20px;
+	font-size: 30px;
 	border-radius: 20px;
+    width: 540px;
+    text-align: center;
+    padding: 21px;
 `;
 
 const Btn = styled.button`
@@ -77,6 +88,7 @@ const Btn = styled.button`
 	border-radius: 20px;
 	padding: 20px;
 	cursor: pointer;
+    width: 100%;
 `;
 
 const Form = ({ onAddWorkout }) => {
@@ -143,8 +155,6 @@ const Form = ({ onAddWorkout }) => {
 				<ContentLabel>내용 : </ContentLabel>
 				<Content
 					value={content}
-					rows={5}
-					cols={18}
 					placeholder="40자 내로 입력"
 					maxLength={40}
 					onChange={contentHandler}
@@ -153,7 +163,7 @@ const Form = ({ onAddWorkout }) => {
 			</ContentContainer>
 
 			<SelectContainer>
-				<SelectLabel>운동 선택 : </SelectLabel>
+				<SelectLabel>운동 : </SelectLabel>
 				<Select onChange={workoutHandler} value={workout}>
 					<option value="스쿼트" defaultValue={workout}>
 						스쿼트
