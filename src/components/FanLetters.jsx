@@ -52,42 +52,43 @@ const CreatedTimeContainer = styled.div`
 `;
 
 const ContentContainer = styled.div`
-    width: 300px;
-    background-color: #738290;
-    padding: 10px;
-    margin-top: 20px;
-    border-radius: 10px;
-    border: none;
-    color:white;
-`
-
+	width: 300px;
+	background-color: #738290;
+	padding: 10px;
+	margin-top: 20px;
+	border-radius: 10px;
+	border: none;
+	color: white;
+`;
 
 const FanLetters = ({ workoutData, selectedWorkout }) => {
 	return (
 		<Container>
-			{workoutData.map((w) => {
-				return (
-					<CommentContainer key={w.id}>
-						<ImageWrapper>
-							<Image src={w.avatar} />
-						</ImageWrapper>
-						<InfoContainer>
-							<NicknameContainer>{w.nickname}</NicknameContainer>
-							<CreatedTimeContainer>
-								{new Date(w.createdAt).toLocaleDateString(
-									"ko-KR"
-								)}{" "}
-								{new Date(w.createdAt).toLocaleTimeString(
-									"ko-KR"
-								)}
-							</CreatedTimeContainer>
-                            <ContentContainer>
-                                {w.content}
-                            </ContentContainer>
-						</InfoContainer>
-					</CommentContainer>
-				);
-			})}
+			{workoutData
+				.filter((w) => w.writedTo === selectedWorkout)
+				.map((w) => {
+					return (
+						<CommentContainer key={w.id}>
+							<ImageWrapper>
+								<Image src={w.avatar} />
+							</ImageWrapper>
+							<InfoContainer>
+								<NicknameContainer>
+									{w.nickname}
+								</NicknameContainer>
+								<CreatedTimeContainer>
+									{new Date(w.createdAt).toLocaleDateString(
+										"ko-KR"
+									)}{" "}
+									{new Date(w.createdAt).toLocaleTimeString(
+										"ko-KR"
+									)}
+								</CreatedTimeContainer>
+								<ContentContainer>{w.content}</ContentContainer>
+							</InfoContainer>
+						</CommentContainer>
+					);
+				})}
 		</Container>
 	);
 };
