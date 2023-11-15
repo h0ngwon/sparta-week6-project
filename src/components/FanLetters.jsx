@@ -71,10 +71,8 @@ const DetailLink = styled(Link)`
     text-decoration: none;
 `
 
-const FanLetters = ({ workoutData, selectedWorkout, getId }) => {
-	const getCommentId = (id) => {
-		getId(id);
-	};
+const FanLetters = ({ workoutData, selectedWorkout }) => {
+	
 	return (
 		<Container>
 			{workoutData

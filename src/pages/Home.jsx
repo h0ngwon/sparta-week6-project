@@ -21,16 +21,12 @@ const Home = ({workoutData, addWorkout}) => {
 		setMenuWorkout(workout);
 	};
 
-    const getCommentIdHandler = (id) => {
-        console.log("from home : " + id);
-    }
-
 	return (
 		<Container>
 			<Header />
 			<Navigation onGetWorkout={getMenuWorkoutHandler} />
 			<Form onAddWorkout={addWorkout}/>
-			<FanLetters workoutData={workoutData} selectedWorkout={menuWorkout} getId={getCommentIdHandler}/>
+			<FanLetters workoutData={workoutData} selectedWorkout={menuWorkout}/>
 		</Container>
 	);
 };
