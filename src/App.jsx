@@ -1,10 +1,20 @@
 import Router from 'shared/Router';
 import "reset.css"
+import dummy from './fakedata.json'
+import { useState } from 'react';
 
 function App() {
+    const [workout, setWorkout] = useState(dummy);
+
+    const addWorkoutHandler = (w) => {
+        setWorkout((prevWorkout) => {
+            return [...prevWorkout, w];
+        })
+    }
+
 	return (
 		<>
-			<Router/>
+			<Router workoutData={workout} addWorkout={addWorkoutHandler}/>
 		</>
 	);
 }

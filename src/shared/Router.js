@@ -3,12 +3,12 @@ import Home from "pages/Home";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const Router = () => {
+const Router = ({workoutData, addWorkout}) => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Home />} />
-                <Route path="/detail" element={<Detail />} />
+				<Route path="/" element={<Home workoutData={workoutData} addWorkout={addWorkout}/>} />
+                <Route path="/detail:id" element={<Detail workoutData={workoutData}/>} />
 			</Routes>
 		</BrowserRouter>
 	);

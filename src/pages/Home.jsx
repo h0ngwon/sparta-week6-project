@@ -3,7 +3,6 @@ import Header from "components/Header";
 import Navigation from "components/Navigation";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import dummy from "../fakedata.json";
 import FanLetters from "components/FanLetters";
 
 const Container = styled.div`
@@ -13,28 +12,25 @@ const Container = styled.div`
 	flex-direction: column;
 `;
 
-const Home = () => {
-	const [workout, setWorkout] = useState(dummy);
+const Home = ({workoutData, addWorkout}) => {
 	const [menuWorkout, setMenuWorkout] = useState("");
 
 	useEffect(() => setMenuWorkout("스쿼트"), []);
-
-    const addWorkoutHandler = (w) => {
-        setWorkout((prevWorkout) => {
-            return [...prevWorkout, w];
-        })
-    }
 
 	const getMenuWorkoutHandler = (workout) => {
 		setMenuWorkout(workout);
 	};
 
+    const getCommentIdHandler = (id) => {
+        console.log("from home : " + id);
+    }
+
 	return (
 		<Container>
 			<Header />
 			<Navigation onGetWorkout={getMenuWorkoutHandler} />
-			<Form onAddWorkout={addWorkoutHandler}/>
-			<FanLetters workoutData={workout} selectedWorkout={menuWorkout}/>
+			<Form onAddWorkout={addWorkout}/>
+			<FanLetters workoutData={workoutData} selectedWorkout={menuWorkout} getId={getCommentIdHandler}/>
 		</Container>
 	);
 };

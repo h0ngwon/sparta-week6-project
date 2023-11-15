@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -24,6 +25,11 @@ const CommentContainer = styled.div`
 	margin: 20px;
 	padding: 20px;
 	border-radius: 20px;
+	cursor: pointer;
+
+	&:hover {
+		transform: scale(1.1);
+	}
 `;
 
 const ImageWrapper = styled.div`
@@ -61,32 +67,43 @@ const ContentContainer = styled.div`
 	color: white;
 `;
 
-const FanLetters = ({ workoutData, selectedWorkout }) => {
+const DetailLink = styled(Link)`
+    text-decoration: none;
+`
+
+const FanLetters = ({ workoutData, selectedWorkout, getId }) => {
+	const getCommentId = (id) => {
+		getId(id);
+	};
 	return (
 		<Container>
 			{workoutData
 				.filter((w) => w.writedTo === selectedWorkout)
 				.map((w) => {
 					return (
-						<CommentContainer key={w.id}>
-							<ImageWrapper>
-								<Image src={w.avatar} />
-							</ImageWrapper>
-							<InfoContainer>
-								<NicknameContainer>
-									{w.nickname}
-								</NicknameContainer>
-								<CreatedTimeContainer>
-									{new Date(w.createdAt).toLocaleDateString(
-										"ko-KR"
-									)}{" "}
-									{new Date(w.createdAt).toLocaleTimeString(
-										"ko-KR"
-									)}
-								</CreatedTimeContainer>
-								<ContentContainer>{w.content}</ContentContainer>
-							</InfoContainer>
-						</CommentContainer>
+						<DetailLink to={`/detail/${w.id}`} key={w.id}>
+							<CommentContainer key={w.id}>
+								<ImageWrapper>
+									<Image src={w.avatar} />
+								</ImageWrapper>
+								<InfoContainer>
+									<NicknameContainer>
+										{w.nickname}
+									</NicknameContainer>
+									<CreatedTimeContainer>
+										{new Date(
+											w.createdAt
+										).toLocaleDateString("ko-KR")}{" "}
+										{new Date(
+											w.createdAt
+										).toLocaleTimeString("ko-KR")}
+									</CreatedTimeContainer>
+									<ContentContainer>
+										{w.content}
+									</ContentContainer>
+								</InfoContainer>
+							</CommentContainer>
+						</DetailLink>
 					);
 				})}
 		</Container>
