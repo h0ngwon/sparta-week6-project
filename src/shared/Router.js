@@ -8,7 +8,7 @@ const Router = ({workoutData, addWorkout}) => {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Home workoutData={workoutData} addWorkout={addWorkout}/>} />
-                <Route path="/detail:id" element={<Detail workoutData={workoutData}/>} />
+                <Route path="/detail/:id" element={<Detail workoutData={workoutData}/>} />
 			</Routes>
 		</BrowserRouter>
 	);

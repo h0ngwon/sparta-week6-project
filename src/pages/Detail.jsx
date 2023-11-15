@@ -1,7 +1,11 @@
+import FanLetter from 'components/FanLetter';
 import React from "react";
 
-const Detail = () => {
-	return <div>Detail</div>;
+const Detail = ({ workoutData }) => {
+
+	return (
+		<FanLetter workoutData={workoutData}/>
+	);
 };
 
 export default Detail;
