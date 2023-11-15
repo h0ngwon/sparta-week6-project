@@ -3,7 +3,7 @@ import Home from "pages/Home";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const Router = ({ workoutData, addWorkout, deleteWorkout, modifyWorkout }) => {
+const Router = ({ workoutData, addWorkout, deleteWorkout, modifyWorkout, getMenuWorkout, menuWorkout }) => {
 	return (
 		<BrowserRouter>
 			<Routes>
@@ -12,7 +12,9 @@ const Router = ({ workoutData, addWorkout, deleteWorkout, modifyWorkout }) => {
 					element={
 						<Home
 							workoutData={workoutData}
+                            menuWorkout={menuWorkout}
 							addWorkout={addWorkout}
+                            getMenuWorkout={getMenuWorkout}
 						/>
 					}
 				/>

@@ -12,19 +12,13 @@ const Container = styled.div`
 	flex-direction: column;
 `;
 
-const Home = ({workoutData, addWorkout}) => {
-	const [menuWorkout, setMenuWorkout] = useState("");
-
-	useEffect(() => setMenuWorkout("스쿼트"), []);
-
-	const getMenuWorkoutHandler = (workout) => {
-		setMenuWorkout(workout);
-	};
+const Home = ({workoutData, addWorkout, getMenuWorkout, menuWorkout}) => {
+	
 
 	return (
 		<Container>
 			<Header />
-			<Navigation onGetWorkout={getMenuWorkoutHandler} />
+			<Navigation onGetWorkout={getMenuWorkout} />
 			<Form onAddWorkout={addWorkout}/>
 			<FanLetters workoutData={workoutData} selectedWorkout={menuWorkout}/>
 		</Container>
