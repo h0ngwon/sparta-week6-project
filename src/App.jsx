@@ -5,20 +5,32 @@ import dummy from "./fakedata.json";
 function App() {
 	const [workout, setWorkout] = useState(dummy);
 
-	const addWorkoutHandler = (w) => {
+	const addWorkoutHandler = (data) => {
 		setWorkout((prevWorkout) => {
-			return [...prevWorkout, w];
+			return [...prevWorkout, data];
 		});
 	};
 
-    const deleteWorkoutHandler = (id) => {
-        const filteredWorkout = workout.filter(w => w.id !== id)
-        setWorkout(filteredWorkout);
-    }
+	const deleteWorkoutHandler = (id) => {
+		const filteredWorkout = workout.filter((w) => w.id !== id);
+		setWorkout(filteredWorkout);
+	};
+
+	const modifyWorkoutHandler = (data) => {
+		const filteredWorkout = workout.filter((w) => w.id !== data.id);
+        setWorkout(() => {
+            return [...filteredWorkout, data];
+        })
+	};
 
 	return (
 		<>
-			<Router workoutData={workout} addWorkout={addWorkoutHandler} deleteWorkout={deleteWorkoutHandler}/>
+			<Router
+				workoutData={workout}
+				addWorkout={addWorkoutHandler}
+				deleteWorkout={deleteWorkoutHandler}
+				modifyWorkout={modifyWorkoutHandler}
+			/>
 		</>
 	);
 }
