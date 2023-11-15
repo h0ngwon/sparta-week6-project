@@ -1,10 +1,10 @@
 import FanLetter from 'components/FanLetter';
 import React from "react";
 
-const Detail = ({ workoutData }) => {
+const Detail = ({ workoutData, deleteWorkout }) => {
 
 	return (
-		<FanLetter workoutData={workoutData}/>
+		<FanLetter workoutData={workoutData} deleteWorkout={deleteWorkout}/>
 	);
 };
 

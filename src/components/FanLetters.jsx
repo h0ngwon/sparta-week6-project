@@ -68,42 +68,48 @@ const ContentContainer = styled.div`
 `;
 
 const DetailLink = styled(Link)`
-    text-decoration: none;
-`
+	text-decoration: none;
+`;
 
 const FanLetters = ({ workoutData, selectedWorkout }) => {
-	
+	const nothing = `${selectedWorkout}를 하고싶은 사람이 없어요!`;
+
 	return (
 		<Container>
-			{workoutData
-				.filter((w) => w.writedTo === selectedWorkout)
-				.map((w) => {
-					return (
-						<DetailLink to={`/detail/${w.id}`} key={w.id}>
-							<CommentContainer key={w.id}>
-								<ImageWrapper>
-									<Image src={w.avatar} />
-								</ImageWrapper>
-								<InfoContainer>
-									<NicknameContainer>
-										{w.nickname}
-									</NicknameContainer>
-									<CreatedTimeContainer>
-										{new Date(
-											w.createdAt
-										).toLocaleDateString("ko-KR")}{" "}
-										{new Date(
-											w.createdAt
-										).toLocaleTimeString("ko-KR")}
-									</CreatedTimeContainer>
-									<ContentContainer>
-										{w.content}
-									</ContentContainer>
-								</InfoContainer>
-							</CommentContainer>
-						</DetailLink>
-					);
-				})}
+			{workoutData.filter((w) => w.writedTo === selectedWorkout).length >
+			0
+				? workoutData
+						.filter((w) => w.writedTo === selectedWorkout)
+						.map((w) => {
+							return (
+								<DetailLink to={`/detail/${w.id}`} key={w.id}>
+									<CommentContainer key={w.id}>
+										<ImageWrapper>
+											<Image src={w.avatar} />
+										</ImageWrapper>
+										<InfoContainer>
+											<NicknameContainer>
+												{w.nickname}
+											</NicknameContainer>
+											<CreatedTimeContainer>
+												{new Date(
+													w.createdAt
+												).toLocaleDateString(
+													"ko-KR"
+												)}{" "}
+												{new Date(
+													w.createdAt
+												).toLocaleTimeString("ko-KR")}
+											</CreatedTimeContainer>
+											<ContentContainer>
+												{w.content}
+											</ContentContainer>
+										</InfoContainer>
+									</CommentContainer>
+								</DetailLink>
+							);
+						})
+				: nothing}
 		</Container>
 	);
 };

@@ -29,8 +29,8 @@ const HomeBtn = styled.button`
 
 const ContentContainer = styled.div`
 	display: flex;
-    flex-direction: column;
-    align-items: center;
+	flex-direction: column;
+	align-items: center;
 	width: 1000px;
 	height: 800px;
 	background-color: #787276;
@@ -44,16 +44,20 @@ const Header = styled.div`
 	justify-content: space-around;
 	width: 100%;
 	height: 20%;
-    margin: 50px;
+	margin: 50px;
+    background-color: black;
+    padding: 20px;
 `;
 
 const ImageContainer = styled.div`
-	width: 2rem;
-    margin-right: 20px;
+	width: 10rem;
+	margin-right: 20px;
+    height: 100%;
 `;
 
 const UserImage = styled.img`
-    width: 100px;
+    height: 100%;
+    box-sizing: border-box;
 `;
 
 const Nickname = styled.h1`
@@ -66,32 +70,58 @@ const CreatedTime = styled.div`
 `;
 
 const WritedContainer = styled.div`
-    font-size: 30px;
-    color: white;
-`
+	font-size: 30px;
+	color: white;
+`;
 
 const ArticleContainer = styled.div`
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 50px;
-    width: 50rem;
-    height: 20rem;
-    border-radius: 20px;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 24px;
-`
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 50px;
+	width: 50rem;
+	height: 20rem;
+	border-radius: 20px;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	font-size: 24px;
+`;
 
-const FanLetter = ({ workoutData }) => {
+const BtnsContainer = styled.div`
+    width: 50%;
+	display: flex;
+    justify-content: space-between;
+`;
+
+const ModifyBtn = styled.button`
+    color:white;
+    background-color:black;
+    font-size: 30px;
+    width: 200px;
+    border: none;
+    border-radius: 50px;
+    padding: 20px;
+    cursor: pointer;
+    &:hover {
+        background-color: #333847;
+    }
+`;
+const DeleteBtn = styled(ModifyBtn)`
+`;
+
+const FanLetter = ({ workoutData, deleteWorkout }) => {
 	const { id } = useParams();
 	const filteredData = workoutData.filter((w) => w.id === id)[0];
 	const navigate = useNavigate();
 	const navigateHandler = () => {
 		navigate("/");
 	};
+    const deleteWorkoutHandler = (id) => {
+        deleteWorkout(id);
+        navigateHandler();
+    }
 
 	return (
 		<Container>
@@ -113,8 +143,12 @@ const FanLetter = ({ workoutData }) => {
 						)}
 					</CreatedTime>
 				</Header>
-                <WritedContainer>For {filteredData.writedTo}</WritedContainer>
-                <ArticleContainer>{filteredData.content}</ArticleContainer>
+				<WritedContainer>For {filteredData.writedTo}</WritedContainer>
+				<ArticleContainer>{filteredData.content}</ArticleContainer>
+				<BtnsContainer>
+					<ModifyBtn>수정</ModifyBtn>
+					<DeleteBtn onClick={() => deleteWorkoutHandler(filteredData.id)}>삭제</DeleteBtn>
+				</BtnsContainer>
 			</ContentContainer>
 		</Container>
 	);

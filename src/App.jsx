@@ -11,9 +11,14 @@ function App() {
 		});
 	};
 
+    const deleteWorkoutHandler = (id) => {
+        const filteredWorkout = workout.filter(w => w.id !== id)
+        setWorkout(filteredWorkout);
+    }
+
 	return (
 		<>
-			<Router workoutData={workout} addWorkout={addWorkoutHandler} />
+			<Router workoutData={workout} addWorkout={addWorkoutHandler} deleteWorkout={deleteWorkoutHandler}/>
 		</>
 	);
 }
