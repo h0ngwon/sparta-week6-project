@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Router from "shared/Router";
-import "reset.css";
 import dummy from "./fakedata.json";
 import { WorkoutContext } from "context/WorkoutContext";
+import "reset.css";
 
 function App() {
 	const [workout, setWorkout] = useState(dummy);
