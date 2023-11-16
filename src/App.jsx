@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Router from "shared/Router";
-import dummy from "./fakedata.json";
+import dummy from "fakedata.json";
 import { WorkoutContext } from "context/WorkoutContext";
 import "reset.css";
 
