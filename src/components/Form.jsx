@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 import styled from "styled-components";
-import { WorkoutContext } from "context/WorkoutContext";
+import { useDispatch } from "react-redux";
+import { add } from "redux/reducers/workout";
 
 const Container = styled.div`
 	margin-top: 30px;
@@ -93,7 +94,7 @@ const Btn = styled.button`
 `;
 
 const Form = () => {
-	const ctx = useContext(WorkoutContext);
+	const dispatch = useDispatch();
 	const [nickname, setNickname] = useState("");
 	const [content, setContent] = useState("");
 	const [workout, setWorkout] = useState("스쿼트");
@@ -132,7 +133,7 @@ const Form = () => {
 			return;
 		}
 
-		ctx.addWorkout(data);
+		console.log(dispatch(add(data)));
 
 		setNickname("");
 		setContent("");

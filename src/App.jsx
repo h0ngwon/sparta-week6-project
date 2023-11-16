@@ -7,17 +7,11 @@ import "reset.css";
 function App() {
 	const [workout, setWorkout] = useState(dummy);
 	const [menuWorkout, setMenuWorkout] = useState("");
-
+    
 	useEffect(() => setMenuWorkout("스쿼트"), []);
 
 	const getMenuWorkoutHandler = (workout) => {
 		setMenuWorkout(workout);
-	};
-
-	const addWorkoutHandler = (data) => {
-		setWorkout((prevWorkout) => {
-			return [...prevWorkout, data];
-		});
 	};
 
 	const deleteWorkoutHandler = (id) => {
@@ -39,7 +33,6 @@ function App() {
 					workoutData: workout,
 					menuWorkout,
 					getMenuWorkout: getMenuWorkoutHandler,
-					addWorkout: addWorkoutHandler,
 					deleteWorkout: deleteWorkoutHandler,
 					modifyWorkout: modifyWorkoutHandler,
 				}}
