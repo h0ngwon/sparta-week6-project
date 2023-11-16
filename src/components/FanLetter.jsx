@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { WorkoutContext } from "context/WorkoutContext";
+import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -127,20 +128,21 @@ const ConfirmBtn = styled(ModifyBtn)`
 	width: 100%;
 `;
 
-const FanLetter = ({ workoutData, deleteWorkout, modifyWorkout }) => {
+const FanLetter = () => {
+	const ctx = useContext(WorkoutContext);
 	const { id } = useParams();
-	const filteredData = workoutData.filter((w) => w.id === id)[0];
+	const filteredData = ctx.workoutData.filter((w) => w.id === id)[0];
 	const [isModifyBtnClicked, setIsModifyBtnClicked] = useState(false);
 	const [modifyText, setModifyText] = useState(filteredData.content);
 
-    const data = {
-        createdAt: filteredData.createdAt,
-        nickname: filteredData.nickname,
-        avatar: filteredData.avatar,
-        content: modifyText,
-        writedTo: filteredData.writedTo,
-        id: filteredData.id,
-    };
+	const data = {
+		createdAt: filteredData.createdAt,
+		nickname: filteredData.nickname,
+		avatar: filteredData.avatar,
+		content: modifyText,
+		writedTo: filteredData.writedTo,
+		id: filteredData.id,
+	};
 
 	const navigate = useNavigate();
 
@@ -150,7 +152,7 @@ const FanLetter = ({ workoutData, deleteWorkout, modifyWorkout }) => {
 
 	const deleteWorkoutHandler = (id) => {
 		if (window.confirm("삭제하시겠습니까?")) {
-			deleteWorkout(id);
+			ctx.deleteWorkout(id);
 			navigateHandler();
 		}
 	};
@@ -174,7 +176,7 @@ const FanLetter = ({ workoutData, deleteWorkout, modifyWorkout }) => {
 				return;
 			}
 
-			modifyWorkout(data);
+			ctx.modifyWorkout(data);
 			setIsModifyBtnClicked(!isModifyBtnClicked);
 			navigateHandler();
 		}

@@ -1,4 +1,5 @@
-import React from "react";
+import { WorkoutContext } from 'context/WorkoutContext';
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -71,15 +72,16 @@ const DetailLink = styled(Link)`
 	text-decoration: none;
 `;
 
-const FanLetters = ({ workoutData, selectedWorkout }) => {
-	const nothing = `${selectedWorkout}를 하고싶은 사람이 없어요!`;
+const FanLetters = () => {
+    const ctx = useContext(WorkoutContext);
+	const nothing = `${ctx.menuWorkout}를 하고싶은 사람이 없어요!`;
 
 	return (
 		<Container>
-			{workoutData.filter((w) => w.writedTo === selectedWorkout).length >
+			{ctx.workoutData.filter((w) => w.writedTo === ctx.menuWorkout).length >
 			0
-				? workoutData
-						.filter((w) => w.writedTo === selectedWorkout)
+				? ctx.workoutData
+						.filter((w) => w.writedTo === ctx.menuWorkout)
 						.map((w) => {
 							return (
 								<DetailLink to={`/detail/${w.id}`} key={w.id}>

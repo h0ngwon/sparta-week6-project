@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Router from "shared/Router";
 import "reset.css";
 import dummy from "./fakedata.json";
+import { WorkoutContext } from "context/WorkoutContext";
 
 function App() {
 	const [workout, setWorkout] = useState(dummy);
@@ -33,14 +34,18 @@ function App() {
 
 	return (
 		<>
-			<Router
-				workoutData={workout}
-                menuWorkout={menuWorkout}
-				addWorkout={addWorkoutHandler}
-				deleteWorkout={deleteWorkoutHandler}
-				modifyWorkout={modifyWorkoutHandler}
-				getMenuWorkout={getMenuWorkoutHandler}
-			/>
+			<WorkoutContext.Provider
+				value={{
+					workoutData: workout,
+					menuWorkout,
+					getMenuWorkout: getMenuWorkoutHandler,
+					addWorkout: addWorkoutHandler,
+					deleteWorkout: deleteWorkoutHandler,
+					modifyWorkout: modifyWorkoutHandler,
+				}}
+			>
+				<Router />
+			</WorkoutContext.Provider>
 		</>
 	);
 }

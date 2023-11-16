@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { WorkoutContext } from 'context/WorkoutContext';
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -28,13 +29,14 @@ const List = styled.ul`
 	}
 `;
 
-const Navigation = ({ onGetWorkout }) => {
+const Navigation = () => {
+    const ctx = useContext(WorkoutContext);
 	const workouts = ["스쿼트", "벤치프레스", "데드리프트", "오버헤드프레스"];
 	const [isActiveIdx, setIsActiveIdx] = useState(0);
 
 	const activeMenuHandler = (index) => {
 		setIsActiveIdx(index);
-		onGetWorkout(workouts[index]);
+		ctx.getMenuWorkout(workouts[index]);
 	};
 
 	return (

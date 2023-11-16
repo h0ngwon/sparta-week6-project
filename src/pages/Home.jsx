@@ -12,15 +12,13 @@ const Container = styled.div`
 	flex-direction: column;
 `;
 
-const Home = ({workoutData, addWorkout, getMenuWorkout, menuWorkout}) => {
-	
-
+const Home = () => {
 	return (
 		<Container>
 			<Header />
-			<Navigation onGetWorkout={getMenuWorkout} />
-			<Form onAddWorkout={addWorkout}/>
-			<FanLetters workoutData={workoutData} selectedWorkout={menuWorkout}/>
+			<Navigation />
+			<Form />
+			<FanLetters />
 		</Container>
 	);
 };

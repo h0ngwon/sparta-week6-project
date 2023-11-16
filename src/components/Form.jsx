@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { v4 as uuid } from "uuid";
 import styled from "styled-components";
+import { WorkoutContext } from "context/WorkoutContext";
 
 const Container = styled.div`
 	margin-top: 30px;
@@ -8,7 +9,7 @@ const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	width: 700px;
-	background-color: #5A6673;
+	background-color: #5a6673;
 	border-radius: 30px;
 	padding: 20px;
 `;
@@ -16,9 +17,9 @@ const Container = styled.div`
 const NicknameContainer = styled.div`
 	display: flex;
 	align-items: center;
-    justify-content: space-around;
+	justify-content: space-around;
 	margin: 10px;
-    width: 100%;
+	width: 100%;
 `;
 
 const NicknameLabel = styled.label`
@@ -32,15 +33,15 @@ const Nickname = styled.input`
 	padding: 20px;
 	border-radius: 20px;
 	border: none;
-    width:500px;
+	width: 500px;
 `;
 
 const ContentContainer = styled.div`
 	margin: 10px;
 	display: flex;
 	align-items: center;
-    justify-content: space-around;
-    width:100%;
+	justify-content: space-around;
+	width: 100%;
 `;
 
 const ContentLabel = styled.label`
@@ -54,15 +55,15 @@ const Content = styled.textarea`
 	border-radius: 20px;
 	padding: 25px;
 	resize: none;
-    width:490px;
+	width: 490px;
 `;
 
 const SelectContainer = styled.div`
 	margin: 10px;
 	display: flex;
 	align-items: center;
-    justify-content: space-around;
-    width:100%;
+	justify-content: space-around;
+	width: 100%;
 `;
 
 const SelectLabel = styled.label`
@@ -74,9 +75,9 @@ const SelectLabel = styled.label`
 const Select = styled.select`
 	font-size: 30px;
 	border-radius: 20px;
-    width: 540px;
-    text-align: center;
-    padding: 21px;
+	width: 540px;
+	text-align: center;
+	padding: 21px;
 `;
 
 const Btn = styled.button`
@@ -88,10 +89,11 @@ const Btn = styled.button`
 	border-radius: 20px;
 	padding: 20px;
 	cursor: pointer;
-    width: 100%;
+	width: 100%;
 `;
 
-const Form = ({ onAddWorkout }) => {
+const Form = () => {
+	const ctx = useContext(WorkoutContext);
 	const [nickname, setNickname] = useState("");
 	const [content, setContent] = useState("");
 	const [workout, setWorkout] = useState("스쿼트");
@@ -130,7 +132,7 @@ const Form = ({ onAddWorkout }) => {
 			return;
 		}
 
-		onAddWorkout(data);
+		ctx.addWorkout(data);
 
 		setNickname("");
 		setContent("");
