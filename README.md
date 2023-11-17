@@ -3,7 +3,6 @@
 프로젝트 내용 : 팬 레터 사이트 제작<br/>
 개발 일정 : 2023.11.10 - 2023.11.20<br/>
 사용 스택 : HTML, CSS, JavaScript, React, Redux<br/>
-<hr style="background:black"/>
 
 # 웹페이지 설명
 <img src="assets/스크린샷 2023-11-17 오후 3.49.37.png">
