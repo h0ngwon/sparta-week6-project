@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
-import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { add } from "redux/reducers/workout";
-
+import { addItem } from "redux/reducers/workout";
+import styled from "styled-components";
 const Container = styled.div`
 	margin-top: 30px;
 	display: flex;
@@ -133,12 +132,13 @@ const Form = () => {
 			return;
 		}
 
-		console.log(dispatch(add(data)));
-
+		dispatch(addItem(data));
+        
 		setNickname("");
 		setContent("");
 	};
 
+    
 	return (
 		<Container>
 			<NicknameContainer>

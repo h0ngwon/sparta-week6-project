@@ -1,5 +1,6 @@
-import { WorkoutContext } from 'context/WorkoutContext';
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import { select } from "redux/reducers/menu";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -30,13 +31,13 @@ const List = styled.ul`
 `;
 
 const Navigation = () => {
-    const ctx = useContext(WorkoutContext);
+	const dispatch = useDispatch();
 	const workouts = ["스쿼트", "벤치프레스", "데드리프트", "오버헤드프레스"];
 	const [isActiveIdx, setIsActiveIdx] = useState(0);
 
 	const activeMenuHandler = (index) => {
 		setIsActiveIdx(index);
-		ctx.getMenuWorkout(workouts[index]);
+		dispatch(select(workouts[index]));
 	};
 
 	return (

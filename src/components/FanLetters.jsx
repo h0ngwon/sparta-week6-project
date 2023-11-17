@@ -1,7 +1,8 @@
-import { WorkoutContext } from "context/WorkoutContext";
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import styled from "styled-components";
+
 
 const Container = styled.div`
 	display: flex;
@@ -73,15 +74,16 @@ const DetailLink = styled(Link)`
 `;
 
 const FanLetters = () => {
-	const ctx = useContext(WorkoutContext);
-	const nothing = `${ctx.menuWorkout}를 하고싶은 사람이 없어요!`;
+    const menuWorkout = useSelector(state => state.menuReducer);
+    const workoutData = useSelector(state => state.workoutReducer);
+	const nothing = `${menuWorkout}를 하고싶은 사람이 없어요!`;
 
 	return (
 		<Container>
-			{ctx.workoutData.filter((w) => w.writedTo === ctx.menuWorkout)
+			{workoutData.filter((w) => w.writedTo === menuWorkout)
 				.length > 0
-				? ctx.workoutData
-						.filter((w) => w.writedTo === ctx.menuWorkout)
+				? workoutData
+						.filter((w) => w.writedTo === menuWorkout)
 						.map((w) => {
 							return (
 								<DetailLink to={`/detail/${w.id}`} key={w.id}>
