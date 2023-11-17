@@ -1,7 +1,8 @@
+import FanLetter from "components/FanLetter";
 import React from "react";
 
 const Detail = () => {
-	return <div>Detail</div>;
+	return <FanLetter />;
 };
 
 export default Detail;
